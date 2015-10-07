@@ -820,8 +820,10 @@ CanvasRails::Application.routes.draw do
 
   post 'selection_test' => 'external_content#selection_test'
 
-  resources :quiz_submissions do
-    concerns :files
+  scope '/quizzes' do
+    resources :quiz_submissions do
+      concerns :files
+    end
   end
 
   get 'courses/:course_id/outcome_rollups' => 'outcome_results#rollups', as: 'course_outcome_rollups'
